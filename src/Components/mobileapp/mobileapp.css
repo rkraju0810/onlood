@@ -1,0 +1,19 @@
+.mobile-app-container{
+    text-align: center;
+    margin-top: 40px;
+}
+
+.mobileapp-text{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 45px;
+}
+
+.mobileapp-img-container{
+    margin-top: 20px;
+}
+
+
+.playstore-img{
+   margin-right: 30px; 
+}

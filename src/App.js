@@ -1,23 +1,63 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import Navbar from './Components/navbar/Navbar';
+import { Route, Routes } from "react-router-dom"
+import Home from "../src/Components/home/Home"
+import Cart from "../src/Components/cart/Cart"
+import { food_list } from '../src/assests/assets'
+import LoginPopUp from './Components/LoginPopUp/LoginPopUp'
 
 function App() {
+
+  const [isSignin, setIsSignin] = useState(false)
+
+  const [category, setCategory] = useState("All")
+
+  const [foodlist, setFoodlist] = useState(food_list)
+
+  const [search,setSearch] = useState(' ')
+
+  useEffect(() => {
+
+    const selectedmenu = food_list.filter((item) =>
+      item.category === category
+    )
+    
+    if(selectedmenu.length == 0){
+      setFoodlist(food_list)
+    }else{
+      setFoodlist(selectedmenu)
+    }
+  }, [category])
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        isSignin && <LoginPopUp
+          setIsSignin={setIsSignin}
+        />
+      }
+
+      <Navbar
+        setIsSignin={setIsSignin}
+        search = {search}
+        setSearch = {setSearch}
+/>
+
+      <Routes>
+        <Route path='/' element={<Home
+          category={category}
+          setCategory={setCategory}
+          foodlist={foodlist}
+
+
+        />}>
+        </Route>
+        <Route path='/cart' element={<Cart />}>
+        </Route>
+      </Routes>
     </div>
   );
 }

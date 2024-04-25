@@ -1,0 +1,53 @@
+.explore-menu{
+   display: flex;
+   gap: 20px;
+   flex-direction: column;
+   
+}
+
+.explore-menu h1{
+    font-weight: 500;
+    margin-left: 5%;
+}
+
+.explore-menu-text{
+  width: 60%;
+  margin-left: 5%;
+  font-size: 18px;
+}
+
+
+.explore-menu-list{
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.explore-menu-list img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.explore-menu-list img:hover{
+    transform: scale(0.98);
+}
+
+.explore-menu-list p{
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+hr{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.active img{
+    border: 2px solid tomato ;
+    padding: 5px;
+}
