@@ -173,17 +173,22 @@ margin-top: -30px;
 .des-info h1{
    font-size: 30px;
    font-weight: 500;
+   padding-top: -30px;
 }
 
 .des-info h6{
     margin-top: -20px;
     font-size: 12px;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.des-info p{
+    font-size: 14px;
 }
 
 .food-title{
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     font-size: 25px;
     font-weight: 600;
 }
@@ -210,23 +215,23 @@ margin-top: -30px;
 
 .similar-products{
     display: flex;
-    gap:20px;
+    gap:50px;
     border-top: 2px solid #ccc;
     justify-content: center;
-    margin-top: 10px;
-    /* padding-top: 10px; */
+    margin-top: 10px;   
     height: 230px;
 }
 
 .similar-food-item {
     display: flex;
-    margin-top: 10px;
+    margin: 10px ;
     /* flex-basis: calc(25% - 30px); */
     flex-direction: column;
     border: 2px solid #ccc;
     border-radius: 10px;
     position: relative;
 }
+
 
 .similar-food-item:hover {
     transform: scale(0.99);
@@ -260,8 +265,8 @@ margin-top: -30px;
 
 
 .similar-food-item-price {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500;
     color: tomato;
 }
 

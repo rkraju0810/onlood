@@ -58,6 +58,7 @@ const Exploremenu = ({ foodlist }) => {
             ...prevCounts,
             [itemId]: (prevCounts[itemId] || 0) + 1
         }));
+        console.log(itemCount)
     };
 
     const handleRemove = (itemId) => {
@@ -65,6 +66,8 @@ const Exploremenu = ({ foodlist }) => {
             ...prevCounts,
             [itemId]: Math.max(0, (prevCounts[itemId] || 0) - 1)
         }));
+        console.log(itemCount)
+
     };
 
     const handleshow = (id) => {
@@ -76,9 +79,7 @@ const Exploremenu = ({ foodlist }) => {
         // console.log(similarCategory)
     }
 
-    // const handleshowsimilar = () =>{
-    //     console.log('qw')
-    // }
+    
 
 
     return (
@@ -91,7 +92,7 @@ const Exploremenu = ({ foodlist }) => {
                     foodlist.map((item, index) =>
                         <div key={item._id} className='food-item' >
                             <div className="food-item-img-container">
-                                <img src={item.image} alt="" className='food-item-img' onClick={() => handleshow(index)}/>
+                                <img src={item.image} alt="" className='food-item-img' onClick={() => handleshow(index)} />
                                 {itemCount[item._id] > 0 ?
 
                                     <div className="add-remove-icon">
@@ -139,8 +140,6 @@ const Exploremenu = ({ foodlist }) => {
                             </div>
                             <img src={assets.cross_icon} alt="" onClick={() => setShowdetails(false)} className='cross-icon' />
 
-
-
                         </div>
 
                         <div className="similar-products">
@@ -150,7 +149,7 @@ const Exploremenu = ({ foodlist }) => {
                                 foodlist.filter((item) => item.category == similarCategory && item != foodlist[desID]).map((item, index) =>
 
 
-                                    <div key={item._id} className='similar-food-item' onClick={() => handleshow(foodlist.length < 5 ? index : item._id-1)}>
+                                    <div key={item._id} className='similar-food-item' onClick={() => handleshow(foodlist.length < 5 ? index : item._id - 1)}>
                                         <div className="similar-food-item-img-container">
                                             <img src={item.image} alt="" className='similar-food-item-img' />
                                             {/* {itemCount[item._id] > 0 ?
