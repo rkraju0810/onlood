@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { assets } from '../../assests/assets'
+import React, { useState,useEffect } from 'react'
+import { assets, food_list } from '../../assests/assets'
 import './exploremenu.css'
 
 
-const Exploremenu = ({ foodlist }) => {
 
-    const [itemCount, setItemCount] = useState({})
+const Exploremenu = ({ foodlist,itemCount,setItemCount,category}) => {
+
+    
 
     const [similarCategory, setsimilarCategory] = useState()
 
-    // const [selectsimilarcategory , setselectsimilarcategory]=  useState()
 
     const RestaurantNames = [{
         name: "Cheesecake Factory",
@@ -57,24 +57,49 @@ const Exploremenu = ({ foodlist }) => {
         setItemCount(prevCounts => ({
             ...prevCounts,
             [itemId]: (prevCounts[itemId] || 0) + 1
+            
         }));
-        console.log(itemCount)
+        
     };
+
+    // const handleRemove = (itemId) => {
+    //     setItemCount(prevCounts => ({
+    //         ...prevCounts,
+            
+    //         itemId: Math.max(0, (prevCounts[itemId] || 0) - 1) ,
+    //         Object.entries(prevCounts) == 0 ? delete obj(itemId) : itemId
+    //     }));
+
+        
+    //     console.log(itemCount)
+     
+    // };
 
     const handleRemove = (itemId) => {
-        setItemCount(prevCounts => ({
-            ...prevCounts,
-            [itemId]: Math.max(0, (prevCounts[itemId] || 0) - 1)
-        }));
-        console.log(itemCount)
-
+        setItemCount(prevCounts => {
+            // Copy the previous state
+            let updatedCounts = { ...prevCounts };
+    
+            // Update the count for the specified item
+            updatedCounts[itemId] = Math.max(0, (prevCounts[itemId] || 0) - 1);
+    
+            // Check if the count for the item is zero, then delete the property
+            if (updatedCounts[itemId] === 0) {
+                delete updatedCounts[itemId];
+            }
+    
+            return updatedCounts;
+        });
+    
+        console.log(itemCount);
     };
+
 
     const handleshow = (id) => {
         setShowdetails(true)
         setDesID(id)
-        setsimilarCategory(foodlist[id].category)
-        console.log(foodlist[id].category)
+        setsimilarCategory(food_list[id].category)
+        // console.log(foodlist[id].category)
         // console.log(id)
         // console.log(similarCategory)
     }
@@ -92,19 +117,19 @@ const Exploremenu = ({ foodlist }) => {
                     foodlist.map((item, index) =>
                         <div key={item._id} className='food-item' >
                             <div className="food-item-img-container">
-                                <img src={item.image} alt="" className='food-item-img' onClick={() => handleshow(index)} />
+                                <img src={item.image} alt="" className='food-item-img' onClick={() => handleshow(item._id - 1)} />
                                 {itemCount[item._id] > 0 ?
 
                                     <div className="add-remove-icon">
                                         <img src={assets.remove_icon_red} alt="" className='remove-icon-red' onClick={() => handleRemove(item._id)} />
                                         <p>{itemCount[item._id] || 0}</p>
                                         <img src={assets.add_icon_green} alt="" className='add-icon-green' onClick={() => handleAdd(item._id)} />
-                                    </div> : <img src={assets.add_icon_white} alt="" className='add-icon-white' onClick={() => handleAdd(item._id)} />
+                                    </div> : <img src={assets.add_icon_white} alt="" className='add-icon-white' onClick={() => handleAdd(item._id )} />
                                 }
 
 
                             </div>
-                            <div className="food-item-info" onClick={() => handleshow(index)}>
+                            <div className="food-item-info" onClick={() => handleshow(item._id - 1)}>
                                 <div className="food-item-name-ratings">
 
 
@@ -129,12 +154,12 @@ const Exploremenu = ({ foodlist }) => {
                     <div className="des-container">
                         <div className='des-info-container'>
                             <div className='des-img-container'>
-                                <img src={foodlist[desID].image} alt="" />
+                                <img src={food_list[desID].image} alt="" />
                             </div>
                             <div className='des-info'>
                                 <h1>{RestaurantNames[(Math.floor(Math.random() * 9))].name}</h1>
                                 <h6>{RestaurantNames[(Math.floor(Math.random() * 9))].address}</h6>
-                                <h2 className='food-title'>{foodlist[desID].name}</h2>
+                                <h2 className='food-title'>{food_list[desID].name}</h2>
                                 <p>Lorem iplosum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione nesciunt ipsam facere fuga eos provident voluptatum repellat, lorem Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque voluptate laudantium, ullam vero minus perferendis adipisci. Ipsam nisi voluptate quasi?saepe possimus, nobis repellendus neque in numquam hic. Eligendi quo doloremque impedit eveniet?consectetur adipisicing elit. Nisi quia, cupiditate quam voluptatum laborum labore voluptas magni culpa iure unde corrupti soluta blanditiis sed esse eligendi accusamus autem officiis excepturi!50</p>
                                 <button className='Order-btn'>Order Now</button>
                             </div>
@@ -146,21 +171,13 @@ const Exploremenu = ({ foodlist }) => {
 
                             {
 
-                                foodlist.filter((item) => item.category == similarCategory && item != foodlist[desID]).map((item, index) =>
+                                foodlist.filter((item) => item.category == similarCategory && item != food_list[desID]).map((item,index) =>
 
 
-                                    <div key={item._id} className='similar-food-item' onClick={() => handleshow(foodlist.length < 5 ? index : item._id - 1)}>
+                                    <div key={item._id} className='similar-food-item' onClick={() => handleshow(item._id - 1)}>
+                                       
                                         <div className="similar-food-item-img-container">
                                             <img src={item.image} alt="" className='similar-food-item-img' />
-                                            {/* {itemCount[item._id] > 0 ?
-
-                                            <div className="add-remove-icon">
-                                                <img src={assets.remove_icon_red} alt="" className='remove-icon-red' onClick={() => handleRemove(item._id)} />
-                                                <p>{itemCount[item._id] || 0}</p>
-                                                <img src={assets.add_icon_green} alt="" className='add-icon-green' onClick={() => handleAdd(item._id)} />
-                                            </div> : <img src={assets.add_icon_white} alt="" className='add-icon-white' onClick={() => handleAdd(item._id)} />
-                                        } */}
-
 
                                         </div>
                                         <div className="similar-food-item-info">

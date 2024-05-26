@@ -34,7 +34,8 @@
 .navbar-right{
     display: flex;
     align-items: center;
-    gap: 20px;}
+    gap: 20px;
+}
 
 .nav-search{
    position: relative;
@@ -47,7 +48,7 @@
     border-radius: 10px;
     font-size: 16px;
     outline: none;
-    padding-right: 50px;
+    padding-right: 30px;
 
 }
 
@@ -75,11 +76,8 @@
     border-radius: 50px;
     position: absolute;
     right:14px;
-    top: 2px;
+    top: -5px;
 }
-
-
-
 
 .btn-nav{
     background-color: transparent;
@@ -96,4 +94,142 @@
     background-color: #fff4f2;
 }
 
+.side-nav-bar{
+    background-color: tomato;
+    display: none;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.side-nav-bar-menu-icon{
+    display: none;
+    width: 33px;
+    height: 33px;
+    opacity: 0.7;
+    color: #0c236f;
+    cursor: pointer;
+}
 
+.side-nav-logo{
+    color: white;
+    letter-spacing: 1.3px;
+    font-size: 40px;
+    margin-left: -10px;
+}
+
+.side-nav-bar-cross-icon{
+    float: right;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+    color:black;
+}
+
+.side-nav-bar-cross-icon:hover{
+    color: white;
+}
+
+
+@media only screen and (max-width: 1024px){
+ 
+    
+    
+}
+
+ @media only screen and (max-width: 900px){
+    .navbar-menu{
+        display: none;
+    }
+    .nav-icons img{
+        display: none;
+    }
+
+    .dot{
+        left: 25px;
+    }
+    .side-nav-bar{
+        display: block;
+        width: 250px;
+    }
+    .side-navbar-menu{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 20px;
+    }
+    .side-navbar-menu li{
+        list-style: none;
+        padding-left:10px ;
+    }
+
+    .side-navbar-menu li:hover{
+        color: white;
+
+    }
+    .side-navbar-menu a:hover{
+        color: white;
+    }
+    .side-nav-bar-menu-icon{
+        display: block;
+    }
+     
+    .side-nav-cart-icon{
+        position: relative;
+        left: 20px;
+    }
+
+    .logo{
+        width: 130px;
+     }
+} 
+
+@media only screen and (max-width: 540px){
+    .navbar-menu{
+        display: none;
+    }
+    .logo{
+       width: 130px;
+       margin-left: -25px;
+    }
+    .dot{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 360px){
+    .navbar-menu{
+        /* display: none; */
+    }
+    .logo{
+       width: 100px;
+       margin-left: -25px;
+    }
+    .dot{
+        display: none;
+    }
+
+    .btn-nav{
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .nav-icons img{
+        margin-right: 0px;
+    }
+
+    .dot{
+        background-color: tomato;
+        width: 7px;
+        height: 7px;
+        border-radius: 50px;
+        position: absolute;
+        right:-5px;
+        top: -5px;
+        
+    }
+}

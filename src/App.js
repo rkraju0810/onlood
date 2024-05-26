@@ -15,7 +15,9 @@ function App() {
 
   const [foodlist, setFoodlist] = useState(food_list)
 
-  const [search,setSearch] = useState(' ')
+  const [search,setSearch] = useState('')
+
+  const [itemCount, setItemCount] = useState({})
 
   useEffect(() => {
 
@@ -44,6 +46,7 @@ function App() {
         setIsSignin={setIsSignin}
         search = {search}
         setSearch = {setSearch}
+        itemCount = {itemCount}
 />
 
       <Routes>
@@ -51,11 +54,16 @@ function App() {
           category={category}
           setCategory={setCategory}
           foodlist={foodlist}
-
-
+          itemCount = {itemCount}
+          setItemCount = {setItemCount}
         />}>
+
         </Route>
-        <Route path='/cart' element={<Cart />}>
+        <Route path='/cart' element={<Cart 
+        itemCount = {itemCount}
+        setItemCount = {setItemCount}
+        foodlist={foodlist}
+        />}>
         </Route>
       </Routes>
     </div>
